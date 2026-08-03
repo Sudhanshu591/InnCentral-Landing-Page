@@ -1,0 +1,3 @@
+# The framer-mirror is a byte-exact copy of Framer's published build.
+# Disable all end-of-line conversion so files stay identical on every platform.
+* -text

@@ -1,0 +1,2 @@
+import{t as e}from"./rolldown-runtime.Dh6celcD.mjs";function t(e,t){return{description:`SaaS & Startup Website Template`,favicon:`https://framerusercontent.com/assets/3MBrJAsr7iVCAfgiZfPxxMT1w.png`,robots:`max-image-preview:large`,title:`Bartoon`}}var n=e((()=>{}));export{t as n,n as t};
+//# sourceMappingURL=shared-lib.7zUUPNTq.mjs.map

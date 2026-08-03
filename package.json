@@ -1,0 +1,15 @@
+{
+  "name": "inncentral",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exact local mirror of the InnCentral (Bartoon) Framer site — production build with all original animations.",
+  "scripts": {
+    "start": "serve -l 3000 --no-clipboard framer-mirror/light-turtle-275913.framer.app",
+    "site": "serve -l 3000 --no-clipboard framer-mirror/light-turtle-275913.framer.app",
+    "mirror": "node scripts/mirror.mjs && node scripts/fix-mirror.mjs && node scripts/fetch-modules.mjs"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6",
+    "website-scraper": "^6.0.0"
+  }
+}
