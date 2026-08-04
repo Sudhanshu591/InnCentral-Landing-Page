@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------ *
+ *  shadcn / registry semantic tokens — mapped to the InnCentral palette
+ *  so shadcn, Aceternity, Magic UI, Cult, Origin, Animata, etc. render
+ *  on-brand. (We intentionally do NOT remap --color-accent: our brand
+ *  vermilion `bg-accent` stays ours; shadcn's `primary` is the accent.)
+ * ------------------------------------------------------------------ */
+:root {
+  --radius: 0.625rem;
+  --background: #f5f8fd;
+  --foreground: #0a0d16;
+  --card: #ffffff;
+  --card-foreground: #0a0d16;
+  --popover: #ffffff;
+  --popover-foreground: #0a0d16;
+  --primary: #007bff;
+  --primary-foreground: #ffffff;
+  --secondary: #e9eff8;
+  --secondary-foreground: #0a0d16;
+  --muted: #e9eff8;
+  --muted-foreground: #5a6473;
+  --destructive: #e5484d;
+  --border: #dce4ef;
+  --input: #dce4ef;
+  --ring: #007bff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  InnCentral / Bartoon design tokens (exact Framer values)
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-bg: #f5f8fd; /* cool near-white */
+  --color-bg-tint: #e9eff8; /* cool light band */
+  --color-ink: #0a0d16; /* near-black */
+  --color-ink-muted: #5a6473; /* cool gray */
+  --color-line: #dce4ef; /* cool light border */
+  --color-white: #ffffff;
+
+  --color-dark: #0a0e18; /* black-blue inverted sections + Professional card */
+  --color-dark-ink: #f5f8fd;
+
+  --color-accent: #007bff; /* blue */
+  --color-violet: #1e56d6; /* deep blue */
+  --color-amber: #4c8dff; /* light blue */
+  --color-green: #007bff; /* blue (was green) */
+
+  --font-sans: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 20px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+  h1 { letter-spacing: -0.02em; line-height: 1.16; }
+  h2 { line-height: 1.2; }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection { background: color-mix(in srgb, var(--color-accent) 22%, transparent); }
+}
+
+/* Faint engineering grid (matches the Framer grid image), edge-masked */
+@utility grid-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-line) 65%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-line) 65%, transparent) 1px, transparent 1px);
+  background-size: 54px 54px;
+  -webkit-mask-image: radial-gradient(120% 80% at 50% 30%, #000 25%, transparent 75%);
+  mask-image: radial-gradient(120% 80% at 50% 30%, #000 25%, transparent 75%);
+}
+
+@utility grid-bg-dark {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 54px 54px;
+  -webkit-mask-image: radial-gradient(120% 80% at 50% 40%, #000 25%, transparent 75%);
+  mask-image: radial-gradient(120% 80% at 50% 40%, #000 25%, transparent 75%);
+}
+
+/* Formatted CMS content (blog / case-study / career bodies) */
+.prose { color: var(--color-ink-muted); font-size: 17px; line-height: 1.75; }
+.prose > * + * { margin-top: 1.1em; }
+.prose h2, .prose h3, .prose h4, .prose h5, .prose h6 { color: var(--color-ink); margin-top: 1.8em; }
+.prose h2 { font-size: 1.6rem; }
+.prose h3 { font-size: 1.3rem; }
+.prose h4, .prose h5, .prose h6 { font-size: 1.1rem; }
+.prose strong { color: var(--color-ink); font-weight: 700; }
+.prose a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; }
+.prose ul, .prose ol { padding-left: 1.25em; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li { margin-top: 0.4em; }
+.prose img { border-radius: 16px; border: 1px solid var(--color-line); margin-top: 1.5em; }
+.prose blockquote { border-left: 3px solid var(--color-accent); padding-left: 1em; font-style: italic; color: var(--color-ink); }
+.prose .trailing-break { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
