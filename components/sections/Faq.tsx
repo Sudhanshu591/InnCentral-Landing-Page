@@ -26,6 +26,30 @@ const faqs = [
     q: "Can InnCentral be self-hosted?",
     a: "Yes, on Enterprise. You can deploy in your own VPC, private cloud or controlled environment, with RBAC, audit logs and migration support.",
   },
+  {
+    q: "What's included in the free plan?",
+    a: "The full platform — PMS and front desk, housekeeping, booking engine, channel manager, POS, payments, e-invoicing and API access — with 100+ ready integrations.",
+  },
+  {
+    q: "Which payment gateways do you support?",
+    a: "UAE, USA and global gateways, so you can collect deposits, full payments and refunds in your region, posted straight to guest bills.",
+  },
+  {
+    q: "Does InnCentral include a POS?",
+    a: "Yes. Run restaurant, spa, minibar and add-on POS with every charge posted directly to the guest folio, no separate system needed.",
+  },
+  {
+    q: "Can I issue tax-ready e-invoices?",
+    a: "Yes. InnCentral generates tax-ready e-invoices automatically, formatted for local requirements across the regions we support.",
+  },
+  {
+    q: "Do you help migrate from my current system?",
+    a: "Yes. Import your rooms, rates and channels to go live quickly, with dedicated migration support available on Enterprise.",
+  },
+  {
+    q: "Is there an API for developers?",
+    a: "Yes. InnCentral is API-first, with an open REST API, webhooks and access tokens, plus connectors for automation, accounting, CRM and ERP tools.",
+  },
 ];
 
 const faqJsonLd = {

@@ -82,6 +82,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html
       lang="en"
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
       className={`${hostGrotesk.variable} ${inter.variable} ${jakarta.variable} ${anton.variable}`}
     >
       <body className="min-h-screen antialiased">

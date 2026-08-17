@@ -1,24 +1,22 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/lib/site";
 
-/** InnCentral wordmark — Anton display face with an accent spark mark. */
-export function Logo({ dark = false }: { dark?: boolean }) {
+/**
+ * InnCentral logo — full lockup (monitor mark + wordmark) served as a static image.
+ * Intrinsic asset is 500×100 (5:1); rendered at 40px tall, width auto-scales.
+ */
+export function Logo() {
   return (
-    <Link href="/" className="inline-flex items-center gap-2" aria-label={`${site.name} home`}>
-      <span
-        aria-hidden="true"
-        className="grid size-8 place-items-center rounded-[10px] bg-accent text-white"
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M8 1.6l1.7 3.9 4.2.4-3.2 2.8 1 4.1L8 10.6 4.3 12.8l1-4.1L2.1 5.9l4.2-.4L8 1.6z" fill="currentColor" />
-        </svg>
-      </span>
-      <span
-        className={`text-[20px] uppercase leading-none tracking-[0.01em] ${dark ? "text-dark-ink" : "text-ink"}`}
-        style={{ fontFamily: "var(--font-anton)" }}
-      >
-        {site.name}
-      </span>
+    <Link href="/" className="inline-flex items-center" aria-label={`${site.name} home`}>
+      <Image
+        src="/assets/logo.png"
+        alt={site.name}
+        width={500}
+        height={100}
+        priority
+        className="h-10 w-auto"
+      />
     </Link>
   );
 }

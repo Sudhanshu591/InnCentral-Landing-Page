@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Container } from "./Container";
 import { Logo } from "./Logo";
 import { PrimaryButton } from "./Button";
-import { primaryNav, companyMenu, pagesMenu, site } from "@/lib/site";
+import { primaryNav, site } from "@/lib/site";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -38,8 +38,6 @@ export function Nav() {
                 {l.label}
               </NavItem>
             ))}
-            <Dropdown label="Company" items={companyMenu} />
-            <Dropdown label="Pages" items={pagesMenu} />
           </div>
 
           <div className="hidden lg:block">
@@ -66,8 +64,6 @@ export function Nav() {
               {primaryNav.map((l) => (
                 <MobileLink key={l.href} href={l.href}>{l.label}</MobileLink>
               ))}
-              <MobileGroup label="Company" items={companyMenu} />
-              <MobileGroup label="Pages" items={pagesMenu} />
               <div className="pt-3">
                 <PrimaryButton href={site.ctaPrimary.href} className="w-full justify-center">
                   {site.ctaPrimary.label}
@@ -81,67 +77,37 @@ export function Nav() {
   );
 }
 
+const isExternal = (href: string) => /^https?:\/\//.test(href);
+
 function NavItem({ href, active, children }: { href: string; active: boolean; children: string }) {
+  const className = `rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors duration-200 hover:text-ink ${active ? "text-ink" : "text-ink-muted"}`;
+  if (isExternal(href)) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {children}
+      </a>
+    );
+  }
   return (
-    <Link
-      href={href}
-      className={`rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors duration-200 hover:text-ink ${active ? "text-ink" : "text-ink-muted"}`}
-    >
+    <Link href={href} className={className}>
       {children}
     </Link>
-  );
-}
-
-function Dropdown({ label, items }: { label: string; items: { label: string; href: string }[] }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-      <button
-        type="button"
-        className="flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium text-ink-muted transition-colors duration-200 hover:text-ink"
-        aria-expanded={open}
-        aria-haspopup="menu"
-      >
-        {label}
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className={`transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true">
-          <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-      {open && (
-        <div role="menu" className="absolute left-0 top-full min-w-[200px] pt-2">
-          <div className="rounded-2xl border border-line bg-bg p-1.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.18)]">
-            {items.map((item) => (
-              <Link key={item.href} href={item.href} role="menuitem" className="block rounded-xl px-3 py-2 text-[14px] font-medium text-ink-muted transition-colors hover:bg-bg-tint hover:text-ink">
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
   );
 }
 
 function MobileLink({ href, children }: { href: string; children: string }) {
+  const className = "rounded-xl px-3 py-2.5 text-[16px] font-medium text-ink hover:bg-bg-tint";
+  if (isExternal(href)) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {children}
+      </a>
+    );
+  }
   return (
-    <Link href={href} className="rounded-xl px-3 py-2.5 text-[16px] font-medium text-ink hover:bg-bg-tint">
+    <Link href={href} className={className}>
       {children}
     </Link>
-  );
-}
-
-function MobileGroup({ label, items }: { label: string; items: { label: string; href: string }[] }) {
-  return (
-    <div className="px-3 py-2">
-      <p className="mb-1 text-[12px] font-semibold uppercase tracking-wide text-ink-muted">{label}</p>
-      <div className="flex flex-col">
-        {items.map((item) => (
-          <Link key={item.href} href={item.href} className="rounded-lg py-1.5 text-[15px] text-ink-muted hover:text-ink">
-            {item.label}
-          </Link>
-        ))}
-      </div>
-    </div>
   );
 }
 

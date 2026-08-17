@@ -3,7 +3,11 @@ import { Brand } from "@/components/sections/Brand";
 import { WhyChoose } from "@/components/sections/WhyChoose";
 import { Automation } from "@/components/sections/Automation";
 import { Insights } from "@/components/sections/Insights";
-import { ROI } from "@/components/sections/ROI";
+import { Channels } from "@/components/sections/Channels";
+import { Payments } from "@/components/sections/Payments";
+import { PropertyTypes } from "@/components/sections/PropertyTypes";
+import { Multilingual } from "@/components/sections/Multilingual";
+import { Comparison } from "@/components/sections/Comparison";
 import { Review } from "@/components/sections/Review";
 import { Pricing } from "@/components/sections/Pricing";
 import { Faq } from "@/components/sections/Faq";
@@ -17,7 +21,11 @@ export default function HomePage() {
       <WhyChoose />
       <Automation />
       <Insights />
-      <ROI />
+      <Channels />
+      <Payments />
+      <PropertyTypes />
+      <Multilingual />
+      <Comparison />
       <Review />
       <Pricing />
       <Faq />

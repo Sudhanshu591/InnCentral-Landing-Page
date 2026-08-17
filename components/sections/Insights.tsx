@@ -37,15 +37,19 @@ export function Insights() {
           </Reveal>
         </div>
 
-        <RevealGroup className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it) => (
             <RevealItem key={it.title}>
-              <div className="flex flex-col items-start">
-                <div className="grid size-12 place-items-center rounded-xl border border-white/10 bg-white/5">
+              <div className="group relative flex h-full flex-col items-start overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.07] sm:p-7">
+                {/* top sheen */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+                {/* hover glow */}
+                <div className="pointer-events-none absolute -inset-px rounded-2xl bg-[radial-gradient(400px_circle_at_top,rgba(0,123,255,0.12),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="relative grid size-12 place-items-center rounded-xl border border-white/15 bg-white/10 shadow-inner shadow-white/5 transition-colors duration-300 group-hover:border-[#007bff]/40 group-hover:bg-[#007bff]/10">
                   {it.icon}
                 </div>
-                <h3 className="mt-5 text-[19px] font-bold text-dark-ink">{it.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-dark-ink/65">{it.copy}</p>
+                <h3 className="relative mt-5 text-[19px] font-bold text-dark-ink">{it.title}</h3>
+                <p className="relative mt-2 text-[15px] leading-relaxed text-dark-ink/65">{it.copy}</p>
               </div>
             </RevealItem>
           ))}

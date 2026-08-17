@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { HotelImage } from "@/components/ui/HotelImage";
 
 // Per-tab screenshot. Drop each file in public/assets with these names to give
 // every tab its own image. Until a file exists, a placeholder box is shown.
@@ -51,37 +51,6 @@ const blocks = [
     image: "/assets/tab-reports.png",
   },
 ];
-
-/** Tab screenshot — shows a placeholder box until the image file is added. */
-function TabImage({ src, alt }: { src: string; alt: string }) {
-  const [failed, setFailed] = useState(false);
-
-  if (failed) {
-    return (
-      <div className="flex aspect-[1918/889] w-full flex-col items-center justify-center gap-3 rounded-[14px] border border-dashed border-line bg-bg-tint text-ink-muted">
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="3" />
-          <circle cx="8.5" cy="8.5" r="1.5" />
-          <path d="M21 15l-5-5L5 21" />
-        </svg>
-        <span className="text-[14px] font-semibold text-ink">{alt}</span>
-        <span className="text-[12px]">Add screenshot</span>
-      </div>
-    );
-  }
-
-  return (
-    <Image
-      src={src}
-      alt={alt}
-      width={1918}
-      height={889}
-      unoptimized
-      onError={() => setFailed(true)}
-      className="h-auto w-full rounded-[14px]"
-    />
-  );
-}
 
 export function Automation() {
   const [active, setActive] = useState(0);
@@ -147,7 +116,13 @@ export function Automation() {
                     style={{ background: "radial-gradient(60% 60% at 50% 45%, rgba(0,123,255,0.5), rgba(0,71,179,0.22) 50%, transparent 75%)" }}
                   />
                   <div className="relative overflow-hidden rounded-[20px] border border-line bg-white p-2 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.3)]">
-                    <TabImage src={b.image} alt={b.title} />
+                    <HotelImage
+                      src={b.image}
+                      alt={b.title}
+                      label={`${b.title} screenshot`}
+                      className="aspect-[1918/889] w-full rounded-[14px]"
+                      sizes="(max-width: 1024px) 100vw, 70vw"
+                    />
                   </div>
                 </div>
               </div>

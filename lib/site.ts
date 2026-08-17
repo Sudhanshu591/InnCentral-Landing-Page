@@ -29,8 +29,12 @@ export type NavLink = { label: string; href: string };
 
 export const primaryNav: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "Platform", href: "/feature" },
+  { label: "Features", href: "/feature" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Integrations", href: "/integration" },
+  { label: "Case Studies", href: "/case-study" },
+  { label: "Blog", href: "/blog" },
+  { label: "Documentation", href: "https://docs.sdlccorp.com/" },
 ];
 
 export const companyMenu: NavLink[] = [
